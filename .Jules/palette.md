@@ -1,0 +1,3 @@
+## 2025-01-20 - Keyboard Accessibility for Clickable Divs
+**Learning:** In React applications utilizing Framer Motion, it's common to make `motion.div` elements clickable using `onClick` (e.g., for complex, styled cards like `DataCard`). However, doing so without adding proper ARIA roles and keyboard event handlers completely breaks keyboard navigation and accessibility. Users cannot tab to these "buttons" nor activate them using standard keyboard inputs.
+**Action:** Always pair `onClick` on non-button elements (`div`, `motion.div`) with `role="button"`, `tabIndex={0}`, an `onKeyDown` handler (listening for `Enter` and `Space`), and `focus-visible` styles to ensure full accessibility.
