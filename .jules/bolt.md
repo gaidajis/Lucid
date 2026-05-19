@@ -1,0 +1,3 @@
+## 2024-05-19 - Unnecessary filtering and grouping in App component
+**Learning:** Found an O(T*N) operation (filtering items and grouping them by tier, where T=tiers and N=items) running synchronously on every render of the main `App` component. Because the app uses extensive local state for UI toggles (modals, sidebar, etc.), opening a modal causes all list items to be unnecessarily re-processed.
+**Action:** Use `useMemo` for expensive array operations (filtering and grouping) that derive data from state or store, especially when the component also handles frequent, orthogonal state updates like UI toggles.
