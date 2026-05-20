@@ -72,8 +72,8 @@ export const DataCard: React.FC<DataCardProps> = ({ item, editMode, onEdit, onDe
             className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
           />
         ) : (
-          <div className="w-full h-full flex items-center justify-center bg-[#1A1A1A]">
-            <ImageOff className="w-8 h-8 text-[#555555]" />
+          <div className="w-full h-full flex items-center justify-center bg-gray-100 dark:bg-gray-900">
+            <ImageOff className="w-8 h-8 text-gray-400 dark:text-gray-500" />
           </div>
         )}
       </div>
