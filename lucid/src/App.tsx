@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { Plus } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useLucidStore } from './store/useLucidStore';
@@ -51,7 +51,7 @@ function App() {
   } = useLucidStore();
 
   // Filter items
-  const filteredItems = items.filter((item: LucidItem) => {
+  const filteredItems = useMemo(() => items.filter((item: LucidItem) => {
     if (activeFilter.modality !== 'all' && item.modality !== activeFilter.modality) {
       return false;
     }
@@ -59,13 +59,13 @@ function App() {
       return false;
     }
     return true;
-  });
+  }), [items, activeFilter]);
 
   // Group items by tier
-  const itemsByTier = tierIds.reduce((acc, tierId) => {
+  const itemsByTier = useMemo(() => tierIds.reduce((acc, tierId) => {
     acc[tierId] = filteredItems.filter((item: LucidItem) => item.category === tierId);
     return acc;
-  }, {} as Record<TierCategory, LucidItem[]>);
+  }, {} as Record<TierCategory, LucidItem[]>), [filteredItems]);
 
   const handleAddItem = (data: Omit<LucidItem, 'id'>) => {
     addItem(data);
