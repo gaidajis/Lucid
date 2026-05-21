@@ -1,0 +1,3 @@
+## 2024-05-21 - Keyboard Accessibility for Interactive motion.div
+**Learning:** In the `lucid/` app, standard clickable components like `DataCard` are implemented using framer-motion's `motion.div` with an `onClick` handler, but they lack keyboard navigation support by default, causing screen readers and keyboard users to miss out on primary interactions like viewing details.
+**Action:** Always pair `onClick` handlers on non-native interactive elements (like `motion.div`) with `role="button"`, conditional `tabIndex={0}`, an `onKeyDown` handler that triggers on Enter or Space, and `focus-visible` utility classes for clear focus indication.
