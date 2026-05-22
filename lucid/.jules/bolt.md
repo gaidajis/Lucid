@@ -1,0 +1,3 @@
+## 2026-05-22 - [App.tsx Re-renders with Zustand Store]
+**Learning:** High-level components in this project that consume the Zustand store (like `App.tsx`) re-render on any unrelated state update (like opening a modal or updating `editingItem`). If expensive data transformations (like `.filter()` and `.reduce()` on the items array) are placed in the render body without memoization, they recalculate on every render, causing a performance bottleneck, especially as the item list grows.
+**Action:** Always memoize expensive data transformations with `useMemo` in high-level components that consume Zustand stores to prevent performance bottlenecks during unrelated state updates.
