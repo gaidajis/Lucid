@@ -1,0 +1,3 @@
+## 2024-05-23 - Memoizing Derived State in React App Component
+**Learning:** In a heavily stateful main component like `App.tsx` where derived state involves filtering and grouping arrays (e.g., `filteredItems`, `itemsByTier`), omitting memoization leads to unnecessary recalculations during unrelated state updates (like opening/closing modals or toggling sidebars), causing performance bottlenecks.
+**Action:** Always memoize expensive data transformations (like array `filter` and `reduce`) using `useMemo` in high-level components to prevent performance bottlenecks during unrelated state updates.
