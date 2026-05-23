@@ -1,0 +1,3 @@
+## 2024-03-24 - Ensure Keyboard Accessibility for Non-Button Interactive Elements
+**Learning:** In the Lucid app, many interactive UI components (like cards made with `motion.div`) use `onClick` handlers but initially lacked proper keyboard accessibility, rendering them unusable for keyboard-only or screen-reader users.
+**Action:** Always pair `onClick` on non-button elements (like `div` or `motion.div`) with `role="button"`, `tabIndex={0}`, an `onKeyDown` handler (listening for `Enter` and `Space`), and explicit `focus-visible` utility classes (e.g., `focus-visible:ring-2`) to ensure full keyboard accessibility.
