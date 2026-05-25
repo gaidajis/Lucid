@@ -1,0 +1,3 @@
+## 2024-12-25 - High-Level Component Data Transformation Memoization
+**Learning:** In the `lucid` project's architecture, high-level components (like `App.tsx`) frequently manage extensive data transformations (filtering and tier grouping over a Zustand store's array). These components also maintain local UI state (modals, sidebar). Without memoization, opening a simple modal triggers an expensive re-calculation of `O(n * tiers)` across the entire dataset.
+**Action:** Always memoize expensive data transformations (such as `filteredItems` and `itemsByTier`) with `useMemo` in high-level components to isolate the calculation from unrelated local UI state updates, preventing unnecessary UI blocking operations.
