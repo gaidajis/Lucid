@@ -1,0 +1,3 @@
+## 2026-05-26 - Keyboard Accessibility for Non-Button Elements
+**Learning:** Adding `onClick` to a non-button element (like `div` or `motion.div`) makes it interactive for mouse users but completely inaccessible for keyboard users, as it cannot be focused or activated via keyboard keys.
+**Action:** Always pair `onClick` on non-button elements with `role="button"`, `tabIndex={0}`, an `onKeyDown` handler (to catch `Enter` and `Space` keys), and `focus-visible` utility classes (e.g., `focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black dark:focus-visible:ring-white`) to ensure full accessibility and visual focus states while preserving the monochrome theme.
