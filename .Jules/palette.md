@@ -1,0 +1,3 @@
+## 2026-05-27 - Keyboard Accessibility for Clickable Elements
+**Learning:** Found that custom clickable elements, like `DataCard`, which use `onClick` on a `motion.div`, were lacking full keyboard accessibility. Users navigating via keyboard couldn't tab to or activate these cards.
+**Action:** When adding `onClick` to non-button elements, always pair it with `role="button"`, `tabIndex={0}`, an `onKeyDown` handler (for `Enter` and `Space`), and `focus-visible` utility classes (e.g., `focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black dark:focus-visible:ring-white`) to ensure full keyboard accessibility, strictly adhering to the monochrome theme.
