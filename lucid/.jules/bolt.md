@@ -1,0 +1,3 @@
+## 2024-05-28 - Component Rerender Bottleneck with Zustand
+**Learning:** Found a performance bottleneck in `App.tsx` where expensive data transformations (filtering and reducing the entire Zustand store's `items` array) were executing on every re-render. Since React component state triggers re-renders for any UI update (e.g., opening a modal, toggling the sidebar), this O(n) operation was firing unnecessarily, degrading interaction performance.
+**Action:** Always memoize expensive derived state transformations (like filtering/grouping) using `useMemo` in high-level components to prevent performance regressions during unrelated state updates.
