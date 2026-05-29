@@ -1,0 +1,3 @@
+## 2024-05-29 - Contextual Accessibility for Interactive Modes
+**Learning:** When components switch between interactive "view" modes and passive "edit container" modes, blindly applying `role="button"`, `tabIndex={0}`, and `cursor-pointer` causes screen readers and keyboard navigation to treat non-interactive elements as actionable, creating confusion and trapping focus.
+**Action:** Always conditionally apply accessibility semantics (e.g., `role`, `tabIndex`, `aria-label`, `onKeyDown`) and interactive styles (`cursor`, `hover`, `focus-visible`) based on the current functional mode of the element.
