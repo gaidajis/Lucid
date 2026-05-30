@@ -1,0 +1,3 @@
+## 2026-05-30 - Conditional Interactive Semantics on Data Cards
+**Learning:** When making non-button elements (like `motion.div` data cards) interactive, their accessibility semantics (like `role="button"`, `tabIndex`, and keyboard event handlers) and visual focus states must be explicitly disabled when the element enters a non-interactive mode (like an edit mode where clicking the card does nothing). Keeping semantics active when the action is disabled creates confusion for screen reader and keyboard users.
+**Action:** Always conditionally apply `role="button"`, `tabIndex={0}`, `onKeyDown` handlers, and `focus-visible` utility classes based on the current state (e.g., `!editMode`) to strictly adhere to UX standards for non-interactive states.
