@@ -1,0 +1,3 @@
+## 2024-05-30 - Memoization of App-level derived state
+**Learning:** In React architectures where large datasets (like `items` in the Zustand store) are filtered and grouped at the root component level (`App.tsx`), failing to memoize these derived arrays causes O(n) or O(n*m) transformations on *every single render*. This is especially problematic when unrelated local state changes frequently, such as toggling modals (e.g. `addModalOpen`, `viewingItem`) or changing `sidebarOpen` state.
+**Action:** Always memoize expensive data transformations (`.filter`, `.reduce`, `.map`) at the high-level component level using `useMemo` when working with a global store's collection state, explicitly setting dependencies to the raw data and filter criteria.
