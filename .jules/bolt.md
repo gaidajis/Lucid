@@ -1,0 +1,3 @@
+## 2024-06-01 - Memoize expensive data transformations in high-level components
+**Learning:** In React applications with large local state arrays (like a Zustand store managing hundreds of items), performing filtering and reducing operations directly in the component body causes expensive re-computations on every render. This leads to noticeable performance bottlenecks during unrelated state updates, such as simply opening a modal or toggling a boolean flag.
+**Action:** Always memoize expensive data transformations (e.g., filtering and grouping the Zustand store's items array) with `useMemo` in high-level components to ensure these calculations only run when their specific dependencies (the items array or filter criteria) change.
