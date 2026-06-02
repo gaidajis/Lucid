@@ -76,7 +76,11 @@ export const Sidebar: React.FC<SidebarProps> = ({
     <div className="flex flex-col h-full">
       {/* Header */}
       <div className="p-6 pb-4">
-        <button onClick={onLogoClick} className="text-left">
+        <button
+          onClick={onLogoClick}
+          className="text-left rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black dark:focus-visible:ring-white"
+          aria-label="Home"
+        >
           <h1 className="font-serif text-xl tracking-wide mb-1 text-text-primary-light dark:text-text-primary hover:opacity-70 transition-opacity">LUCID</h1>
         </button>
         <p className="text-xs text-gray-500 dark:text-gray-400">The hierarchy of what matters.</p>
@@ -94,9 +98,9 @@ export const Sidebar: React.FC<SidebarProps> = ({
                   onTierClick(tier.id);
                   onClose();
                 }}
-                className={`w-full text-left px-3 py-2.5 transition-colors ${
+                className={`w-full text-left px-3 py-2.5 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black dark:focus-visible:ring-white rounded-md ${
                   activeTier === tier.id
-                    ? 'border-l-2 border-white dark:border-white font-bold pl-2 bg-gray-100 dark:bg-gray-800'
+                    ? 'border-l-2 border-black dark:border-white font-bold pl-2 bg-gray-100 dark:bg-gray-800'
                     : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200'
                 }`}
               >
@@ -240,7 +244,11 @@ export const Sidebar: React.FC<SidebarProps> = ({
         {sidebarContent}
       </aside>
       <header className="lg:hidden sticky top-0 z-40 bg-white dark:bg-background border-b border-border-light dark:border-border px-4 py-3 flex items-center justify-between">
-        <button onClick={onLogoClick} className="text-left">
+        <button
+          onClick={onLogoClick}
+          className="text-left rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black dark:focus-visible:ring-white"
+          aria-label="Home"
+        >
           <h1 className="font-serif text-lg tracking-wide text-text-primary-light dark:text-text-primary hover:opacity-70 transition-opacity">LUCID</h1>
         </button>
         <button
