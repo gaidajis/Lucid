@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { Plus } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useLucidStore } from './store/useLucidStore';
@@ -50,22 +50,27 @@ function App() {
     setActiveTier,
   } = useLucidStore();
 
-  // Filter items
-  const filteredItems = items.filter((item: LucidItem) => {
-    if (activeFilter.modality !== 'all' && item.modality !== activeFilter.modality) {
-      return false;
-    }
-    if (activeFilter.budget !== 'all' && item.context.budget !== activeFilter.budget) {
-      return false;
-    }
-    return true;
-  });
+  // ⚡ Bolt: Memoize expensive array filtering
+  // Reduces unnecessary re-renders when UI state (modals, sidebar) changes
+  const filteredItems = useMemo(() => {
+    return items.filter((item: LucidItem) => {
+      if (activeFilter.modality !== 'all' && item.modality !== activeFilter.modality) {
+        return false;
+      }
+      if (activeFilter.budget !== 'all' && item.context.budget !== activeFilter.budget) {
+        return false;
+      }
+      return true;
+    });
+  }, [items, activeFilter]);
 
-  // Group items by tier
-  const itemsByTier = tierIds.reduce((acc, tierId) => {
-    acc[tierId] = filteredItems.filter((item: LucidItem) => item.category === tierId);
-    return acc;
-  }, {} as Record<TierCategory, LucidItem[]>);
+  // ⚡ Bolt: Memoize expensive item grouping calculation
+  const itemsByTier = useMemo(() => {
+    return tierIds.reduce((acc, tierId) => {
+      acc[tierId] = filteredItems.filter((item: LucidItem) => item.category === tierId);
+      return acc;
+    }, {} as Record<TierCategory, LucidItem[]>);
+  }, [filteredItems]);
 
   const handleAddItem = (data: Omit<LucidItem, 'id'>) => {
     addItem(data);
