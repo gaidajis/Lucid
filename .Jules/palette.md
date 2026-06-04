@@ -1,0 +1,3 @@
+## 2024-06-04 - Dynamic Accessibility on Interactive Elements
+**Learning:** When interactive elements (like clickable cards) have multiple states (e.g., standard view vs. edit mode) where interactivity changes, static accessibility semantics (`role="button"`, `tabIndex={0}`) and visual indicators (pointer cursor, hover effects) can cause a confusing UX if left active during non-interactive states. Screen readers and keyboard navigation might trap users in elements they cannot interact with.
+**Action:** Always conditionally apply accessibility semantics (roles, tabIndex, keyboard handlers) and interactive styling (cursor, focus rings, hover shadows) based on the element's current interactive state (e.g., disable when in `editMode`).
