@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { Plus } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useLucidStore } from './store/useLucidStore';
@@ -50,22 +50,28 @@ function App() {
     setActiveTier,
   } = useLucidStore();
 
-  // Filter items
-  const filteredItems = items.filter((item: LucidItem) => {
-    if (activeFilter.modality !== 'all' && item.modality !== activeFilter.modality) {
-      return false;
-    }
-    if (activeFilter.budget !== 'all' && item.context.budget !== activeFilter.budget) {
-      return false;
-    }
-    return true;
-  });
+  // ⚡ Bolt: Memoize filtered items to prevent O(n) re-calculations on unrelated state changes (like modal toggles)
+  // 📊 Impact: O(n) filtering is only performed when items or filters change, reducing re-render cost significantly.
+  const filteredItems = useMemo(() => {
+    return items.filter((item: LucidItem) => {
+      if (activeFilter.modality !== 'all' && item.modality !== activeFilter.modality) {
+        return false;
+      }
+      if (activeFilter.budget !== 'all' && item.context.budget !== activeFilter.budget) {
+        return false;
+      }
+      return true;
+    });
+  }, [items, activeFilter]);
 
-  // Group items by tier
-  const itemsByTier = tierIds.reduce((acc, tierId) => {
-    acc[tierId] = filteredItems.filter((item: LucidItem) => item.category === tierId);
-    return acc;
-  }, {} as Record<TierCategory, LucidItem[]>);
+  // ⚡ Bolt: Memoize tier grouping to prevent O(n) operations on every render
+  // 📊 Impact: Avoids rebuilding the grouped items object entirely when activeFilter/items remain the same.
+  const itemsByTier = useMemo(() => {
+    return tierIds.reduce((acc, tierId) => {
+      acc[tierId] = filteredItems.filter((item: LucidItem) => item.category === tierId);
+      return acc;
+    }, {} as Record<TierCategory, LucidItem[]>);
+  }, [filteredItems]);
 
   const handleAddItem = (data: Omit<LucidItem, 'id'>) => {
     addItem(data);
