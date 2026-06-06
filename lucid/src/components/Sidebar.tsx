@@ -195,12 +195,16 @@ export const Sidebar: React.FC<SidebarProps> = ({
                 </div>
               </div>
               <form onSubmit={handlePinSubmit}>
+                <label htmlFor="admin-pin" className="sr-only">Admin PIN</label>
                 <input
+                  id="admin-pin"
                   type="password"
                   value={pinInput}
                   onChange={(e) => { setPinInput(e.target.value); setPinError(false); }}
                   placeholder="Enter PIN"
                   autoFocus
+                  aria-invalid={pinError}
+                  aria-describedby={pinError ? "pin-error" : undefined}
                   className={`w-full px-3 py-2.5 text-sm rounded-lg border ${
                     pinError
                       ? 'border-red-400 bg-red-50 dark:bg-red-900/20'
@@ -208,7 +212,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
                   } text-text-primary-light dark:text-text-primary focus:outline-none focus:ring-2 focus:ring-black dark:focus:ring-white mb-1`}
                 />
                 {pinError && (
-                  <p className="text-xs text-red-500 mb-3">Incorrect PIN. Try again.</p>
+                  <p id="pin-error" role="alert" className="text-xs text-red-500 mb-3">Incorrect PIN. Try again.</p>
                 )}
                 {!pinError && <div className="mb-3" />}
                 <div className="flex gap-2">
