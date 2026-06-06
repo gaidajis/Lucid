@@ -1,0 +1,3 @@
+## 2024-03-24 - Conditional Interactive States
+**Learning:** When switching between app modes (like 'view' vs 'edit' modes), elements that lose their primary interaction must also dynamically shed their accessibility semantics (role, tabIndex, aria labels) and visual cues (cursor, hover effects). Leaving these on creates phantom interactive targets for screen readers and keyboard users that do nothing when activated, causing severe confusion.
+**Action:** Always conditionally render `role="button"`, `tabIndex`, keyboard event handlers, `cursor-pointer`, and `hover` states based on the interactive mode of the current element.
