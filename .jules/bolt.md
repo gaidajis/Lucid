@@ -1,0 +1,3 @@
+## 2024-06-07 - Memoizing Zustand Store Transformations
+**Learning:** Memoizing store transformations (like filtering and grouping items arrays) with `useMemo` in high-level components is a critical codebase performance pattern. Without it, unrelated state updates (e.g., toggling UI modal visibility like `addModalOpen` in `App.tsx`) cause expensive array operations to unnecessarily re-run on every render, blocking the main thread.
+**Action:** Always wrap derived data calculations that depend on Zustand store state (like `filteredItems` or `itemsByTier`) in `useMemo` with proper dependency arrays (`[items, activeFilter]`) in React components to prevent unnecessary re-calculations during unrelated state updates.
