@@ -1,0 +1,3 @@
+## 2024-06-09 - Memoizing Expensive Data Transformations
+**Learning:** The lucid project involves filtering and grouping elements stored in the Zustand store by tier across the entire array of items. Previously, the `App.tsx` component would recalculate `filteredItems` and `itemsByTier` on every single render. This included renders triggered by unrelated state changes like opening/closing modals or toggling the sidebar, leading to unnecessary performance overhead.
+**Action:** Always memoize expensive data transformations (like filtering and reducing the Zustand store's items array) with `useMemo` in high-level components to prevent performance bottlenecks during unrelated state updates.
