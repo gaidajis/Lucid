@@ -1,0 +1,3 @@
+## 2025-02-12 - Conditionally Disabling Interactive UI Styles and Semantics
+**Learning:** When elements like `DataCard` switch modes (e.g. entering an edit mode where clicking the card no longer triggers the primary "view" action), leaving their generic interactive styles and keyboard accessibility semantics active causes confusion and disrupts the tab sequence. The element feels "clickable" due to styles, and screen readers interpret it as a generic button without action.
+**Action:** Always conditionally disable `cursor-pointer`, hover effects, focus-visible outlines, `role="button"`, `tabIndex`, and `onKeyDown` handlers dynamically based on state (`!editMode`), so the UI accurately reflects interactive capabilities at any given moment.
