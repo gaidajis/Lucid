@@ -1,0 +1,3 @@
+## 2024-05-24 - Memoizing Data Transformations
+**Learning:** In the `lucid/` project, expensive data transformations (like filtering and grouping the Zustand store's `items` array) in high-level components like `App.tsx` can cause performance bottlenecks. Unrelated state updates (such as opening a modal) will trigger a re-render of `App.tsx`, causing these expensive operations to run unnecessarily if they are not memoized.
+**Action:** Always memoize expensive data transformations with `useMemo` in high-level components. This ensures that the calculations only run when their dependencies (like `items` or `activeFilter`) actually change, preventing unnecessary recalculations and improving overall render performance.
