@@ -1,0 +1,3 @@
+## 2024-12-28 - Dynamic Contextual Accessibility Semantics
+**Learning:** In interactive views (like grids of cards) where elements can switch between a "viewing mode" (where the entire card is clickable) and an "editing mode" (where specific inner buttons become the primary interaction points), statically applying keyboard accessibility semantics (`tabIndex`, `role`, `onKeyDown`) to the parent container creates nesting issues and traps focus when in edit mode.
+**Action:** Always conditionally disable parent-level interactivity semantics and cues (like `cursor-pointer`, `role="button"`, and `focus-visible` rings) when the component is placed into a non-interactive or child-focused state to maintain strict accessibility compliance and avoid confusing screen readers.
