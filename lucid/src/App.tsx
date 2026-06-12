@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { Plus } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useLucidStore } from './store/useLucidStore';
@@ -51,21 +51,29 @@ function App() {
   } = useLucidStore();
 
   // Filter items
-  const filteredItems = items.filter((item: LucidItem) => {
-    if (activeFilter.modality !== 'all' && item.modality !== activeFilter.modality) {
-      return false;
-    }
-    if (activeFilter.budget !== 'all' && item.context.budget !== activeFilter.budget) {
-      return false;
-    }
-    return true;
-  });
+  // ⚡ Bolt: Memoize filter operation to prevent O(N) recalculations on unrelated state updates (e.g., toggling modals)
+  // Expected Impact: Eliminates redundant array filtering when `items` and `activeFilter` haven't changed.
+  const filteredItems = useMemo(() => {
+    return items.filter((item: LucidItem) => {
+      if (activeFilter.modality !== 'all' && item.modality !== activeFilter.modality) {
+        return false;
+      }
+      if (activeFilter.budget !== 'all' && item.context.budget !== activeFilter.budget) {
+        return false;
+      }
+      return true;
+    });
+  }, [items, activeFilter]);
 
   // Group items by tier
-  const itemsByTier = tierIds.reduce((acc, tierId) => {
-    acc[tierId] = filteredItems.filter((item: LucidItem) => item.category === tierId);
-    return acc;
-  }, {} as Record<TierCategory, LucidItem[]>);
+  // ⚡ Bolt: Memoize grouping operation to avoid running array reductions and nested filtering on every render
+  // Expected Impact: Noticeable reduction in render times for the main layout loop, as grouping only runs when `filteredItems` changes.
+  const itemsByTier = useMemo(() => {
+    return tierIds.reduce((acc, tierId) => {
+      acc[tierId] = filteredItems.filter((item: LucidItem) => item.category === tierId);
+      return acc;
+    }, {} as Record<TierCategory, LucidItem[]>);
+  }, [filteredItems]);
 
   const handleAddItem = (data: Omit<LucidItem, 'id'>) => {
     addItem(data);

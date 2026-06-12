@@ -1,0 +1,3 @@
+## 2024-06-12 - Memoize Data Transformations in High-Level Components
+**Learning:** In the `lucid/` project, filtering and grouping the Zustand store's items array in high-level components like `App.tsx` can cause unnecessary re-renders when unrelated state changes (like opening a modal). Since the items list can be large and the grouping logic runs on every render without memoization, this is a performance bottleneck specific to this architecture.
+**Action:** Always memoize expensive data transformations (like filtering and reducing arrays) with `useMemo` in high-level components to prevent performance bottlenecks.
