@@ -1,0 +1,3 @@
+## 2024-05-24 - Interactive `motion.div` Accessibility
+**Learning:** Found that `motion.div` elements used as interactive components (`onClick` for card expansion/viewing) were missing proper keyboard navigation. In disabled/non-interactive states (like `editMode`), they correctly removed standard interactions but needed explicit conditional handling for accessibility attributes.
+**Action:** Always pair `onClick` on non-button interactive elements like `motion.div` with conditional `role="button"`, `tabIndex={0}`, `onKeyDown` handlers for Space/Enter, and appropriate `focus-visible` utility classes that adhere to the monochrome theme (e.g., `focus-visible:ring-black dark:focus-visible:ring-white`).
