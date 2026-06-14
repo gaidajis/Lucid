@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { Plus } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useLucidStore } from './store/useLucidStore';
@@ -51,21 +51,29 @@ function App() {
   } = useLucidStore();
 
   // Filter items
-  const filteredItems = items.filter((item: LucidItem) => {
-    if (activeFilter.modality !== 'all' && item.modality !== activeFilter.modality) {
-      return false;
-    }
-    if (activeFilter.budget !== 'all' && item.context.budget !== activeFilter.budget) {
-      return false;
-    }
-    return true;
-  });
+  // ⚡ Bolt: Memoize filtered items to prevent O(n) array traversal on unrelated state changes (like opening modals)
+  // Expected impact: Eliminates unnecessary re-filtering, particularly helpful as item list grows
+  const filteredItems = useMemo(() => {
+    return items.filter((item: LucidItem) => {
+      if (activeFilter.modality !== 'all' && item.modality !== activeFilter.modality) {
+        return false;
+      }
+      if (activeFilter.budget !== 'all' && item.context.budget !== activeFilter.budget) {
+        return false;
+      }
+      return true;
+    });
+  }, [items, activeFilter]);
 
   // Group items by tier
-  const itemsByTier = tierIds.reduce((acc, tierId) => {
-    acc[tierId] = filteredItems.filter((item: LucidItem) => item.category === tierId);
-    return acc;
-  }, {} as Record<TierCategory, LucidItem[]>);
+  // ⚡ Bolt: Memoize grouped items to prevent O(n) grouping on every render
+  // Expected impact: Eliminates unnecessary tier categorization, reducing main thread blocking time
+  const itemsByTier = useMemo(() => {
+    return tierIds.reduce((acc, tierId) => {
+      acc[tierId] = filteredItems.filter((item: LucidItem) => item.category === tierId);
+      return acc;
+    }, {} as Record<TierCategory, LucidItem[]>);
+  }, [filteredItems]);
 
   const handleAddItem = (data: Omit<LucidItem, 'id'>) => {
     addItem(data);

@@ -1,0 +1,3 @@
+## 2024-06-14 - Memoization of Derived Zustand Data
+**Learning:** In the `lucid/` project architecture, high-level components like `App.tsx` perform derived data calculations (filtering and grouping) directly using the Zustand store state (`items`). Without memoization, these operations run on every unrelated state change (e.g., toggling modals like `addModalOpen`), creating potential performance bottlenecks as the item list grows.
+**Action:** Always memoize derived data calculations (like `filteredItems` and `itemsByTier`) using `useMemo` in high-level components to ensure they only recompute when their specific dependencies (`items`, `activeFilter`) change.
