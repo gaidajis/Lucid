@@ -1,0 +1,3 @@
+## 2024-06-15 - State-Dependent Keyboard Accessibility
+**Learning:** When making cards interactive (like in DataCard), keyboard accessibility attributes (role, tabIndex, onKeyDown) and interactive styles (cursor, hover shadows, focus outlines) must be completely stripped away when the component enters a non-interactive state (like edit mode) to prevent screen readers and keyboard users from focusing on disabled/background elements.
+**Action:** Always conditionally render `role="button"`, `tabIndex`, and focus ring classes based on the component interactive state, rather than just disabling the click handler.
