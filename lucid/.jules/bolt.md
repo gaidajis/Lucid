@@ -1,0 +1,3 @@
+## 2024-06-19 - O(N * Tiers) Filtering Anti-Pattern
+**Learning:** Found a performance bottleneck in high-level components (like App.tsx) where data is filtered and grouped using sequential O(N * Tiers) filter operations. This causes expensive unnecessary re-evaluations during unrelated state updates (e.g., UI modals or sidebar toggles).
+**Action:** Always memoize expensive data transformations with `useMemo`. For array grouping/aggregation across known categories (like Tiers), prefer a single O(N) pass using a lookup map (e.g., `reduce` with a pre-populated accumulator) rather than repeated array iterations.
