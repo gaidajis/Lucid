@@ -1,0 +1,3 @@
+## 2026-06-20 - Dynamic Accessibility Semantics
+**Learning:** Interactive elements that dynamically lose their clickability (e.g., entering an "edit mode" where the card itself shouldn't be clicked) must also dynamically lose their interactive semantics (`role`, `tabIndex`, `onKeyDown`) and visual cues (pointer cursors, hover states, focus states) to prevent confusing screen reader users and keyboard navigators.
+**Action:** Use conditional rendering for `role`, `tabIndex`, and event handlers, passing `undefined` when the element is inactive. Conditionally apply interaction utility classes like `cursor-pointer`, `hover:*`, and `focus-visible:*`.
