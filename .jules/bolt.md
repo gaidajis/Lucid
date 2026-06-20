@@ -1,0 +1,3 @@
+## 2024-06-20 - [Optimize Items Filtering and Grouping]
+**Learning:** In the `lucid/src/App.tsx` file, items were being filtered and grouped by iterating over the items in a `filter` function, and then nested inside a `reduce` function iterating over the tiers. This caused an O(N * Tiers) complexity that was unnecessary and could lead to performance bottlenecks during un-related state updates.
+**Action:** Always memoize expensive data transformations with `useMemo` in high-level components. For array grouping/aggregation, prefer a single O(N) pass using a lookup map (e.g., `reduce` with a pre-populated accumulator) rather than sequential O(N * Tiers) filter operations.
