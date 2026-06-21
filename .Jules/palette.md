@@ -1,0 +1,3 @@
+## 2024-06-21 - Dynamic Accessibility on Interactive Elements
+**Learning:** When using custom clickable elements (like `div` or `motion.div`), keyboard accessibility attributes (`role`, `tabIndex`, `onKeyDown`) and visual indicators (like `cursor-pointer`, `hover` effects, and `focus-visible` styles) should be dynamically removed or set to `undefined` when the element's interactive behavior is disabled (e.g., during an "edit mode"). This ensures screen readers and keyboard users don't encounter confusing, non-functional "button" elements.
+**Action:** Always conditionally render accessibility semantics and interactive classes based on the element's actual active/disabled state, especially in complex UI modes.
