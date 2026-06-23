@@ -1,0 +1,3 @@
+## 2024-06-23 - State-Dependent Accessibility on Interactive Containers
+**Learning:** When using components like `motion.div` as clickable cards (e.g., `DataCard`), they lack native keyboard accessibility. Furthermore, in apps with multiple modes (like `editMode`), leaving these elements keyboard-focusable and showing interactive cursors/hover states while their main `onClick` action is disabled causes significant UX confusion.
+**Action:** Always dynamically remove `role`, `tabIndex`, hover styles, and cursor changes from interactive container elements when their primary interaction is disabled by the application state. Pair this with proper `onKeyDown` handlers for Space/Enter when active.
