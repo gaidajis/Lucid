@@ -1,0 +1,3 @@
+## 2024-11-13 - Data Transformation Bottleneck Mitigation in App.tsx
+**Learning:** Found an O(N * Tiers) rendering bottleneck in `App.tsx`. The filtered items were being recalculated and then grouped into tiers using a separate `.filter` iteration for each tier on every render without memoization. In an app with a large amount of items, this could lead to performance degradation.
+**Action:** Always memoize expensive data transformations with `useMemo`. When grouping arrays into categories like tiers, prefer a single O(N) pass using a pre-populated lookup map (e.g., using `reduce`) rather than sequential O(N * Categories) `filter` operations.
