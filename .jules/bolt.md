@@ -1,0 +1,3 @@
+## 2024-06-25 - Use single O(N) pass for data transformation and grouping
+**Learning:** In the `lucid/` app, array grouping and filtering were previously performed using sequential filter operations that resulted in O(N * Tiers) complexity and triggered on every state update, leading to unnecessary re-renders.
+**Action:** Memoize expensive data transformations with `useMemo` in high-level components. For array grouping/aggregation, prefer a single O(N) pass using a lookup map (e.g., a pre-populated accumulator) rather than sequential O(N * Tiers) filter operations. This prevents performance bottlenecks during unrelated state updates.
