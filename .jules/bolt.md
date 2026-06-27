@@ -1,0 +1,3 @@
+## 2024-06-27 - [Memoizing and optimizing data filtering]
+**Learning:** In the `lucid/` project, filtering and reducing the Zustand store's items array inside high-level components without `useMemo` leads to unnecessary recalculations and performance bottlenecks during unrelated state updates. Separately filtering and mapping the data results in O(N * Tiers) operations.
+**Action:** Always memoize expensive data transformations with `useMemo`. For array grouping/aggregation, prefer a single O(N) pass using a lookup map (e.g., `reduce` with a pre-populated accumulator) rather than sequential O(N * Tiers) filter operations.
