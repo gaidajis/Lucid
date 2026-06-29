@@ -1,0 +1,3 @@
+## 2024-03-20 - Memoizing Array Transformations & O(N) Grouping
+**Learning:** In the `lucid/` app architecture, calculating state properties like `filteredItems` and grouped `itemsByTier` synchronously within the render cycle (e.g. `App.tsx`) causes an $O(N \times Tiers)$ bottleneck. Unrelated state changes, such as toggling a modal (`setAddModalOpen(true)`), force expensive re-calculations even when `items` and `activeFilter` have not changed.
+**Action:** Always memoize expensive data transformations with `useMemo` in high-level components. For array grouping/aggregation across known categories, prefer a single $O(N)$ pass using a lookup map (e.g., `reduce` with a pre-populated accumulator) rather than sequential $O(N \times \text{Tiers})$ filter operations.

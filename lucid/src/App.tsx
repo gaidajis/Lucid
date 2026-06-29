@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { Plus } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useLucidStore } from './store/useLucidStore';
@@ -50,22 +50,32 @@ function App() {
     setActiveTier,
   } = useLucidStore();
 
-  // Filter items
-  const filteredItems = items.filter((item: LucidItem) => {
-    if (activeFilter.modality !== 'all' && item.modality !== activeFilter.modality) {
-      return false;
-    }
-    if (activeFilter.budget !== 'all' && item.context.budget !== activeFilter.budget) {
-      return false;
-    }
-    return true;
-  });
+  // Memoize filtering and grouping to prevent expensive re-calculations on unrelated state changes
+  // and optimize from O(N * Tiers) to O(N) single pass grouping.
+  const itemsByTier = useMemo(() => {
+    // Pre-populate the accumulator with empty arrays for each tier
+    const initialGroups = tierIds.reduce((acc, tierId) => {
+      acc[tierId] = [];
+      return acc;
+    }, {} as Record<TierCategory, LucidItem[]>);
 
-  // Group items by tier
-  const itemsByTier = tierIds.reduce((acc, tierId) => {
-    acc[tierId] = filteredItems.filter((item: LucidItem) => item.category === tierId);
-    return acc;
-  }, {} as Record<TierCategory, LucidItem[]>);
+    return items.reduce((acc, item: LucidItem) => {
+      // 1. Filter
+      if (activeFilter.modality !== 'all' && item.modality !== activeFilter.modality) {
+        return acc;
+      }
+      if (activeFilter.budget !== 'all' && item.context.budget !== activeFilter.budget) {
+        return acc;
+      }
+
+      // 2. Group
+      if (acc[item.category]) {
+        acc[item.category].push(item);
+      }
+
+      return acc;
+    }, initialGroups);
+  }, [items, activeFilter, tierIds]);
 
   const handleAddItem = (data: Omit<LucidItem, 'id'>) => {
     addItem(data);
