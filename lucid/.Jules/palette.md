@@ -1,0 +1,3 @@
+## 2024-06-30 - Keyboard Accessibility for Custom Cards
+**Learning:** In React/Tailwind applications, applying `onClick` to `div` or `motion.div` elements (like `DataCard`) creates an accessibility barrier for keyboard users. Adding keyboard event listeners isn't enough; the 'Space' key triggers default page scrolling, and visual focus states are often missing.
+**Action:** Always pair `onClick` handlers on non-button elements with `role="button"`, `tabIndex={0}`, an `onKeyDown` handler (that explicitly calls `e.preventDefault()` for the 'Space' key), and robust `focus-visible` utility classes to ensure an accessible, native-feeling interactive experience.

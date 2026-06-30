@@ -38,8 +38,22 @@ export const DataCard: React.FC<DataCardProps> = ({ item, editMode, onEdit, onDe
       initial={{ opacity: 0, y: 8 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.3 }}
-      className="group relative bg-card-light dark:bg-card border border-border-light dark:border-border rounded-lg overflow-hidden hover:shadow-[0_4px_16px_rgba(0,0,0,0.12)] dark:hover:shadow-[0_4px_16px_rgba(0,0,0,0.4)] transition-shadow cursor-pointer"
+      className={`group relative bg-card-light dark:bg-card border border-border-light dark:border-border rounded-lg overflow-hidden hover:shadow-[0_4px_16px_rgba(0,0,0,0.12)] dark:hover:shadow-[0_4px_16px_rgba(0,0,0,0.4)] transition-shadow ${
+        !editMode ? 'cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black dark:focus-visible:ring-white' : ''
+      }`}
       onClick={() => !editMode && onView(item)}
+      role={!editMode ? "button" : undefined}
+      tabIndex={!editMode ? 0 : undefined}
+      onKeyDown={(e) => {
+        if (!editMode) {
+          if (e.key === 'Enter') {
+            onView(item);
+          } else if (e.key === ' ') {
+            e.preventDefault();
+            onView(item);
+          }
+        }
+      }}
     >
       {/* Edit/Delete Controls - Only visible in edit mode */}
       {editMode && (
