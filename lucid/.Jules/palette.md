@@ -1,0 +1,3 @@
+## 2025-01-20 - Dynamic Accessibility for State-Dependent Elements
+**Learning:** In applications with modes (like `editMode`), elements such as `motion.div` acting as cards can mistakenly maintain their interactive semantics (`cursor-pointer`, hover states) and lack proper keyboard support when acting as buttons. Static `onClick` handlers aren't enough.
+**Action:** When a non-button element is interactive only in certain modes, conditionally apply `role="button"`, `tabIndex={0}`, an `onKeyDown` handler (for `Enter` and `Space` with `e.preventDefault()`), and `focus-visible` utility classes exclusively when it is actually interactive. Strip these attributes (including hover styles) when the element transitions to a non-interactive state (e.g., in edit mode).
