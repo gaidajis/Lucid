@@ -1,0 +1,3 @@
+## 2024-07-06 - Conditional Accessibility in Multi-Mode Components
+**Learning:** When interactive elements (like data cards) have different behaviors based on mode (e.g. view mode vs edit mode), leaving static accessibility semantics (like `role="button"`, `tabIndex={0}`) when non-interactive creates confusion for screen reader users and keyboard navigation. The `onKeyDown` and focus states must be completely disabled/removed from the DOM when the component switches contexts.
+**Action:** Always conditionally bind `role`, `tabIndex`, interactive CSS classes (`cursor-pointer`, `focus-visible`), and `onKeyDown` handlers based on the active mode state. E.g., `role={!editMode ? "button" : undefined}`.
