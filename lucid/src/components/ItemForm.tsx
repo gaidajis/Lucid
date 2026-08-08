@@ -102,7 +102,7 @@ export const ItemForm: React.FC<ItemFormProps> = ({ initialData, onSubmit }) => 
         title: formData.title,
         category: formData.category,
         modality: formData.modality,
-        imageUrl: formData.imageUrl || 'https://images.unsplash.com/photo-1579546929518-9e396f3cc809?auto=format&fit=crop&w=800&q=80',
+        imageUrl: formData.imageUrl || '/images/photo-1579546929518-9e396f3cc809.jpg',
         rank: 0,
         scores: {
           efficacy: formData.efficacy,
