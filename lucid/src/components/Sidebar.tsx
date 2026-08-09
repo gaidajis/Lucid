@@ -245,7 +245,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
         </button>
         <button
           onClick={onClose}
-          className="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full"
+          className="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black dark:focus-visible:ring-white"
           aria-label="Open menu"
         >
           <Menu className="w-6 h-6" />
@@ -271,7 +271,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
               <div className="absolute top-4 right-4">
                 <button
                   onClick={onClose}
-                  className="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full"
+                  className="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black dark:focus-visible:ring-white"
                   aria-label="Close menu"
                 >
                   <X className="w-6 h-6" />
