@@ -1,0 +1,3 @@
+## 2024-05-24 - Conditional Keyboard Accessibility
+**Learning:** When interactive elements (like custom clickable cards) have multiple states (e.g., standard view vs. edit mode), their keyboard accessibility semantics (`role`, `tabIndex`, `onKeyDown`) and focus styles should conditionally match their interactability in that specific state. Leaving them globally focusable when their `onClick` is disabled leads to keyboard traps and confusing UX.
+**Action:** Use template literals and conditional logic to strip `role="button"`, `tabIndex`, and `focus-visible` styles when a component enters a non-interactive or alternative mode.
