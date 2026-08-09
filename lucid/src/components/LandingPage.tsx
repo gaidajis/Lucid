@@ -122,7 +122,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onEnter }) => {
       {/* Audio Toggle Button */}
       <button
         onClick={toggleAudio}
-        className="fixed top-6 right-6 z-50 p-3 rounded-full bg-gray-900/50 hover:bg-gray-800/70 border border-gray-700 transition-all"
+        className="fixed top-6 right-6 z-50 p-3 rounded-full bg-gray-900/50 hover:bg-gray-800/70 border border-gray-700 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
         aria-label={isMuted ? 'Enable ambient sound' : 'Disable ambient sound'}
       >
         {isMuted ? (
