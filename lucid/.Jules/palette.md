@@ -1,0 +1,3 @@
+## 2024-08-10 - Dynamic Accessibility for Mode-Switching Components
+**Learning:** When interactive elements (like DataCards) can switch between viewing and editing modes, their interactive semantics (role="button", tabIndex, onKeyDown) and visual cues (cursor-pointer, hover, focus-visible) must be dynamically removed when placed into a non-interactive state (e.g., when overlay controls take over in edit mode) to prevent keyboard traps and confusing focus flow.
+**Action:** Always conditionally render accessibility attributes and interactive styling based on the active mode (e.g., `role={!editMode ? "button" : undefined}`).
