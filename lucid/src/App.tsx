@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useCallback } from 'react';
 import { Plus } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useLucidStore } from './store/useLucidStore';
@@ -36,6 +36,20 @@ function App() {
   const [editingItem, setEditingItem] = useState<LucidItem | null>(null);
   const [deletingItem, setDeletingItem] = useState<LucidItem | null>(null);
   const [viewingItem, setViewingItem] = useState<LucidItem | null>(null);
+
+  const handleCardEdit = useCallback((i: LucidItem) => {
+    setEditingItem(i);
+    setEditModalOpen(true);
+  }, []);
+
+  const handleCardDelete = useCallback((i: LucidItem) => {
+    setDeletingItem(i);
+    setDeleteModalOpen(true);
+  }, []);
+
+  const handleCardView = useCallback((i: LucidItem) => {
+    setViewingItem(i);
+  }, []);
 
   const {
     items,
@@ -151,15 +165,9 @@ function App() {
                     key={item.id}
                     item={item}
                     editMode={editMode}
-                    onEdit={(i) => {
-                      setEditingItem(i);
-                      setEditModalOpen(true);
-                    }}
-                    onDelete={(i) => {
-                      setDeletingItem(i);
-                      setDeleteModalOpen(true);
-                    }}
-                    onView={(i) => setViewingItem(i)}
+                    onEdit={handleCardEdit}
+                    onDelete={handleCardDelete}
+                    onView={handleCardView}
                   />
                 ))}
               </TierSection>
