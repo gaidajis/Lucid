@@ -1,0 +1,3 @@
+## 2024-08-10 - Conditional Accessibility & Interaction in Dynamic Modes
+**Learning:** When elements toggle between interactive and non-interactive states (e.g., entering an "edit mode"), it is critical to dynamically remove not only event handlers but also interaction semantics (`role`, `tabIndex`), visual cues (`cursor-pointer`), and focus/hover styles. Leaving these on non-interactive elements creates confusion for both mouse and keyboard users.
+**Action:** When conditionally rendering `onClick` handlers based on application state, apply a matching conditional to `role="button"`, `tabIndex={0}`, `onKeyDown`, and any interaction-specific CSS classes (`hover:*`, `focus-visible:*`, `cursor-pointer`).
