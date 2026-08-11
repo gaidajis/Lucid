@@ -1,0 +1,3 @@
+## 2024-06-03 - Dynamic Accessibility Semantics for Mode-Based UIs
+**Learning:** When components (like DataCard) switch between being the primary interactive target and a passive display element (e.g., in edit mode where inline buttons take precedence), statically defining accessibility semantics (`role="button"`, `tabIndex`, `onKeyDown`) can cause confusing keyboard navigation and screen reader experiences.
+**Action:** Dynamically apply or remove interactive semantics, hover styles, and cursor changes based on the application mode to correctly indicate the element's interactive priority and avoid trapping focus or misrepresenting its function.
