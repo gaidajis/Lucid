@@ -1,0 +1,3 @@
+## 2024-05-24 - Interactive Elements Accessibility in Edit Modes
+**Learning:** Adding accessibility semantics (role="button", tabIndex=0) to interactive elements that serve as cards can cause confusion when the interface enters an edit mode where the click interaction on the card itself is disabled or superseded by inline edit controls.
+**Action:** Always conditionally disable pointer cursors, hover effects, focus-visible outlines, and accessibility semantics (`role`, `tabIndex`, `onKeyDown`) on elements when they are placed into a non-interactive state due to application modes like edit mode.
