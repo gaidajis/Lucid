@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Pencil, Trash2, ImageOff } from 'lucide-react';
 import type { LucidItem } from '../types';
@@ -25,7 +25,10 @@ const tierLabels: Record<string, string> = {
   'tier-10-meaning': 'TIER 10',
 };
 
-export const DataCard: React.FC<DataCardProps> = ({ item, editMode, onEdit, onDelete, onView }) => {
+// ⚡ Bolt Optimization: Wrap component in React.memo
+// Prevents unnecessary re-renders of the entire list when unrelated state in parent changes.
+// Requires stable function references (via useCallback) for onEdit, onDelete, onView props.
+export const DataCard: React.FC<DataCardProps> = React.memo(({ item, editMode, onEdit, onDelete, onView }) => {
   const [imageError, setImageError] = useState(false);
 
   // Reset image error when item changes (e.g. after filter)
@@ -122,4 +125,4 @@ export const DataCard: React.FC<DataCardProps> = ({ item, editMode, onEdit, onDe
       </div>
     </motion.div>
   );
-};
+});
