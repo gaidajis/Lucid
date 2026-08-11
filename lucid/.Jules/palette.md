@@ -1,0 +1,3 @@
+## 2024-06-15 - Conditionally Removing Accessibility Semantics
+**Learning:** When elements like `DataCard` transition into a state where they are no longer primary interactive targets (e.g., Edit Mode where small edit/delete buttons inside them become the primary targets), retaining `role="button"` and `tabIndex={0}` on the parent container creates confusing focus loops for screen readers and keyboard users.
+**Action:** Always conditionally strip interactive semantics (`role`, `tabIndex`, `onKeyDown`) and related styling (`cursor-pointer`, `hover`, `focus-visible`) from parent container elements when they are placed into a disabled or non-interactive state to maintain a clean semantic tree and focus order.
