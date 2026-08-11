@@ -1,0 +1,3 @@
+## 2025-05-28 - Interactive State Visibility
+**Learning:** In list views where items transition between interactive (view details) and non-interactive (edit controls overlay) states, persistent pointer cursors and hover effects on the container element cause user confusion and false affordance.
+**Action:** Always conditionally remove `cursor-pointer` and hover styles from list item containers when they enter a non-interactive state (e.g., when edit mode activates overlay controls). Additionally, ensure the primary container has `role="button"`, `tabIndex={0}`, and `onKeyDown` handlers if it acts as a primary click target.
