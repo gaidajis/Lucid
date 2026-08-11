@@ -1,0 +1,3 @@
+## 2024-05-20 - DataCard Keyboard Accessibility
+**Learning:** Interactive cards built with `motion.div` often lack built-in keyboard accessibility, breaking the tab order and making them unusable for keyboard users.
+**Action:** Always pair `onClick` handlers on `motion.div` (or generic `div`) with `role="button"`, `tabIndex={0}`, an `onKeyDown` handler for 'Enter' and 'Space', and visible focus states (e.g., `focus-visible:ring-2`).
