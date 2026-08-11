@@ -1,0 +1,3 @@
+## 2024-05-14 - Conditionally Disable Interactive Semantics in Edit Modes
+**Learning:** Interactive list elements (like cards) that become non-interactive containers during "Edit" modes often retain their pointer cursors, hover effects, and keyboard accessibility attributes (`tabIndex`, `role`). This creates false affordances, misleading users and trapping screen readers/keyboard focus when the card itself shouldn't be actionable.
+**Action:** Always conditionally remove pointer cursors, hover effects, `focus-visible` styles, and accessibility semantics (`tabIndex`, `role`, `onKeyDown`) when an interactive component is placed into a disabled or non-interactive state (like an edit mode).
