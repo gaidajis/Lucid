@@ -1,0 +1,3 @@
+## 2024-06-28 - Conditional Accessibility Semantics on Interactive Cards
+**Learning:** Custom components like `<motion.div>` that act as actionable items need clear accessibility attributes (`role="button"`, `tabIndex={0}`, `onKeyDown`). However, if these components switch to a state where they are no longer actionable (like an `editMode` where inner buttons become the only interactive parts), preserving these semantics can confuse screen readers and trap keyboard focus unnecessarily.
+**Action:** When creating components with conditional interactivity, explicitly remove `role`, `tabIndex`, and `onKeyDown` attributes when the item itself is disabled or placed into a non-interactive edit state to prevent accessibility ghosting.
