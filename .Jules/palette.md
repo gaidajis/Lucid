@@ -1,0 +1,3 @@
+## 2026-06-13 - Conditional Accessibility in Dual-State Interactive Cards
+**Learning:** When interactive elements (like `DataCard`) have a dual-state where they become non-interactive containers (e.g., during an `editMode` where child elements are interactive instead), leaving standard accessible semantics (like `role="button"` or `tabIndex={0}`) active creates an accessibility trap and confuses screen readers.
+**Action:** Always conditionally apply `role="button"`, `tabIndex={0}`, keyboard handlers (`onKeyDown`), and visual focus indicators (`focus-visible` classes, hover effects, cursors) based on the interactive state. In dual-state components, only apply them when the element itself is the primary target of interaction.
