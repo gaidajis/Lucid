@@ -1,0 +1,3 @@
+## 2024-06-08 - Conditional Accessibility for Dynamic Interactive States
+**Learning:** Found that elements which act as clickable buttons in normal view mode (like DataCards) need their accessibility semantics (role="button", tabIndex={0}, onKeyDown) and interactive styling (cursor-pointer, hover, focus-visible) completely disabled when entering an 'edit mode' where they become mere containers. Otherwise, keyboard users can still tab into and trigger them, creating confusion.
+**Action:** Always conditionally apply `role`, `tabIndex`, keyboard event handlers, and interactive styling based on the current mode/state of the component to ensure the keyboard tab order and screen reader announcements accurately reflect the visible interactive state.
