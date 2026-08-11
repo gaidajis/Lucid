@@ -1,0 +1,3 @@
+## 2024-05-18 - Dynamic Accessible Semantics
+**Learning:** Found that static accessibility attributes (`role="button"`, `tabIndex`, interactive classes) remain active on elements even when their interaction mode (e.g. `onClick`) is programmatically disabled in certain application states like an `editMode`. This causes screen readers and keyboard navigation to perceive non-interactive elements as interactive.
+**Action:** Implemented dynamic conditionality for both the visual cues (`cursor-pointer`, `hover:shadow-lg`, `focus-visible:ring-2`) and accessibility semantics (`role`, `tabIndex`, `onKeyDown`) using the same boolean state (`editMode`). Elements that lose interaction should completely drop their accessible interactive properties.
