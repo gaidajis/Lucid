@@ -1,0 +1,3 @@
+## 2024-05-18 - Missing ARIA Labels and Focus States on Custom Interactive Elements
+**Learning:** Found multiple instances where non-standard interactive elements (`motion.div` acting as a card, text acting as a logo button) lacked appropriate `aria-label`s, `role`, `tabIndex`, keyboard event handlers, and `focus-visible` styles, rendering them inaccessible to screen readers and keyboard users.
+**Action:** Always verify that elements functioning as buttons or interactive cards have proper ARIA attributes, semantic roles, explicit keyboard event handlers (for `Enter` and `Space`), and `focus-visible` states to ensure full accessibility.
