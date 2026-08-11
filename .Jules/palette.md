@@ -1,0 +1,3 @@
+## 2024-07-25 - DataCard Keyboard Accessibility
+**Learning:** Custom interactive elements like `motion.div` acting as buttons need full keyboard support (role, tabIndex, onKeyDown with Space prevention) to be accessible. Furthermore, when elements transition to a non-interactive state (like an edit mode where only sub-actions are available), their interactive semantics and styles (cursor, hover effects, focus states) must be completely disabled to prevent confusing keyboard navigation.
+**Action:** Always pair `onClick` with proper ARIA roles and keyboard handlers, and dynamically remove all interactive attributes/classes when the component enters a disabled or edit-only state.
