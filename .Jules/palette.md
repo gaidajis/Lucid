@@ -1,0 +1,3 @@
+## 2026-05-22 - DataCard Keyboard Accessibility
+**Learning:** Interactive non-button elements (like `motion.div` in Framer Motion used as clickable cards) need explicit ARIA roles, tab indexing, keyboard event handlers (for Enter/Space), and focus-visible styling to be accessible to keyboard users. This is especially relevant in this project where `onClick` is frequently attached to `div` or `motion.div` elements instead of native buttons.
+**Action:** Always pair `onClick` handlers on `div` or `motion.div` elements with `role="button"`, `tabIndex={0}`, an `onKeyDown` handler for Enter and Space, and `focus-visible` utility classes.
