@@ -1,0 +1,3 @@
+## 2024-07-05 - Conditionally Applying Interactive Semantics to State-Dependent Components
+**Learning:** Components that switch between interactive (e.g., clickable cards) and non-interactive (e.g., edit mode containers) states must completely strip interactive semantics (`role="button"`, `tabIndex`) and styles (`cursor-pointer`, `hover`, `focus-visible`) when inactive to prevent misleading users and screen readers.
+**Action:** When a component's primary action is disabled by a global state like `editMode`, use ternary logic in JSX to omit accessibility attributes (`role={!editMode ? 'button' : undefined}`) and conditionally apply utility classes to ensure the element is ignored by keyboard navigation.
