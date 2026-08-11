@@ -1,0 +1,3 @@
+## 2024-05-24 - Missing focus-visible indicators on interactive icon-only buttons
+**Learning:** Found multiple instances where icon-only interactive elements (like the close buttons in modals/sidebars and hamburger menus) lacked proper `focus-visible` outline styles, making them inaccessible for keyboard navigation. This seems to be a common pattern in the application's current design system implementation.
+**Action:** Consistently apply `focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black dark:focus-visible:ring-white` to interactive elements (especially icon-only buttons) to ensure a visible keyboard focus state. This should be a standard utility class combination for interactive elements.
