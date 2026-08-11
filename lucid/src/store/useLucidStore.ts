@@ -9,7 +9,7 @@ export const useLucidStore = create<LucidStore>((set) => ({
   activeTier: null,
 
   addItem: (item) => {
-    const id = Date.now() + '-' + Math.random().toString(36).slice(2);
+    const id = crypto.randomUUID();
     set((state) => ({
       items: [...state.items, { ...item, id }],
     }));
