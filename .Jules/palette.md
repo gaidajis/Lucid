@@ -1,0 +1,3 @@
+## 2024-05-18 - Dynamically Disabled Accessibility Semantics
+**Learning:** In interactive components that can be functionally disabled (like a card entering "edit mode" where clicks are intercepted by action buttons), leaving `role="button"` or `tabIndex={0}` creates confusing phantom tab stops and misleading screen reader announcements.
+**Action:** Always conditionally strip `role`, `tabIndex`, `onKeyDown`, and interactive utility classes (like `cursor-pointer` or `focus-visible`) by setting them to `undefined` or removing them from `className` when the element's primary interaction is disabled.
