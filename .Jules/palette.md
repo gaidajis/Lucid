@@ -1,0 +1,4 @@
+
+## 2024-06-17 - Accessible Clickable Cards and Dynamic State A11y
+**Learning:** When making `div` or `motion.div` elements interactive (like `DataCard.tsx`), they need comprehensive keyboard accessibility semantics (`role="button"`, `tabIndex={0}`, `onKeyDown` with `Enter` and `Space` space-scrolling prevention, and `focus-visible` styles). Furthermore, when interactive elements are placed into a non-interactive state (such as when `editMode` disables card clicking to view details), all of these accessibility semantics, pointer cursors, and hover effects must be dynamically removed to prevent confusion for keyboard and screen reader users.
+**Action:** Always pair `onClick` on non-button elements with `role`, `tabIndex`, `onKeyDown`, and `focus-visible` styles. Dynamically toggle these attributes (setting them to `undefined` or conditionally applying classes) based on whether the interaction is currently allowed in the given state.
