@@ -1,0 +1,3 @@
+## 2024-07-02 - Conditionally Disabling Card Focus Semantics in Edit Modes
+**Learning:** When switching interactive cards into an "Edit Mode" where the card itself is no longer the primary interactive target (instead exposing inner edit/delete buttons), leaving `role="button"` and `tabIndex={0}` on the parent wrapper traps keyboard focus and creates confusing screen reader experiences.
+**Action:** Always conditionally disable pointer styles, focus styles, and keyboard accessibility semantics (like `tabIndex`, `role`, and `onKeyDown`) on the parent card element when it enters a state where its primary action is disabled or superseded by child controls.
