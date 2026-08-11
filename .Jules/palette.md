@@ -1,0 +1,3 @@
+## 2026-06-29 - Conditional Interaction States on Custom Elements
+**Learning:** When using `onClick` on non-button elements (like `div` or `motion.div`) that have conditional interactivity (e.g. only clickable when not in edit mode), the accessibility semantics (`role`, `tabIndex`, `onKeyDown`) and interaction styles (cursor, hover effects, focus-visible outlines) must also be conditionally applied to match the active state. Otherwise, screen readers and keyboard users might perceive disabled elements as actionable.
+**Action:** Always conditionally disable pointer cursors, hover effects, focus-visible outlines, and keyboard accessibility semantics (`tabIndex`, `role`, `onKeyDown`) on interactive elements when they are placed into a non-interactive state.
