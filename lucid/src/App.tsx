@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useCallback } from 'react';
 import { Plus } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useLucidStore } from './store/useLucidStore';
@@ -104,6 +104,21 @@ function App() {
     }
   };
 
+  // ⚡ Bolt Optimization: Extract event handlers into useCallback hooks
+  // This provides stable function references to React.memo child components like DataCard,
+  // preventing O(N*Tiers) cascading re-renders when a parent state (e.g. modal open) changes.
+  const handleEditClick = useCallback((i: LucidItem) => {
+    setEditingItem(i);
+    setEditModalOpen(true);
+  }, []);
+
+  const handleDeleteClick = useCallback((i: LucidItem) => {
+    setDeletingItem(i);
+    setDeleteModalOpen(true);
+  }, []);
+
+  const handleViewClick = useCallback((i: LucidItem) => setViewingItem(i), []);
+
   if (showIntro) {
     return <IntroScreen onComplete={() => setShowIntro(false)} />;
   }
@@ -151,15 +166,9 @@ function App() {
                     key={item.id}
                     item={item}
                     editMode={editMode}
-                    onEdit={(i) => {
-                      setEditingItem(i);
-                      setEditModalOpen(true);
-                    }}
-                    onDelete={(i) => {
-                      setDeletingItem(i);
-                      setDeleteModalOpen(true);
-                    }}
-                    onView={(i) => setViewingItem(i)}
+                    onEdit={handleEditClick}
+                    onDelete={handleDeleteClick}
+                    onView={handleViewClick}
                   />
                 ))}
               </TierSection>
