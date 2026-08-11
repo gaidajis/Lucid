@@ -1,0 +1,3 @@
+## 2026-06-14 - Disabling Interactive Semantics in Edit Modes
+**Learning:** When components like cards double as both interactive elements (e.g., clicking to view details) and passive containers (e.g., while in an 'edit mode' where interaction is handled by overlaid buttons), retaining the interactive semantics (role, tabIndex, cursor, hover styles) on the card wrapper causes confusion for keyboard and screen reader users.
+**Action:** Always conditionally apply `role="button"`, `tabIndex`, keyboard event handlers, and interactive styling classes based on the current mode, ensuring the element becomes truly non-interactive semantically and visually when its primary click action is disabled.
