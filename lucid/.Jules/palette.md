@@ -1,0 +1,3 @@
+## 2024-05-24 - Dynamic Accessibility for Conditional Interactive Elements
+**Learning:** Custom interactive elements (like `DataCard`) that can be put into non-interactive states (e.g., `editMode`) must dynamically remove their accessibility semantics (`role`, `tabIndex`, `onKeyDown`) and visual indicators (cursor, focus, hover) to prevent screen readers and keyboard users from trying to interact with disabled elements.
+**Action:** When implementing elements with conditional interactability, use ternary operators to apply `role="button"` and `tabIndex={0}` only when interactive. Ensure `onKeyDown` and styling (like `cursor-pointer`, `hover`, and `focus-visible`) reflect this conditional state to maintain a clear, accessible experience.
