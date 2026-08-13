@@ -1,0 +1,3 @@
+## 2024-05-18 - Managing Conditional Accessibility Semantics
+**Learning:** When interactive elements (like a card that opens a modal) can transition into non-interactive states (like when an edit mode is toggled), standard accessibility semantics (`role="button"`, `tabIndex`, hover styles, and keyboard focus outlines) become misleading if left active. They falsely signal interactivity to screen reader and keyboard users.
+**Action:** Always conditionally disable these semantics (`role={isInteractive ? "button" : undefined}`, `tabIndex={isInteractive ? 0 : undefined}`) and strip hover/focus styling when the element is rendered in a non-interactive state.
