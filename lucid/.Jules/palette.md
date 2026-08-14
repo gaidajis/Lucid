@@ -1,0 +1,3 @@
+## 2024-05-24 - Dynamic Keyboard Semantics for Interactive Cards
+**Learning:** Adding standard `role="button"` and `tabIndex={0}` to elements that act as cards is essential for keyboard navigation, but keeping these semantics when the card enters a disabled or edit mode can cause confusion and trap keyboard focus unnecessarily.
+**Action:** When implementing clickable cards (like `DataCard`) that can enter an administrative or edit mode where clicking no longer triggers the primary action, dynamically disable the keyboard semantics (`role={undefined}`, `tabIndex={-1}`) and remove focus outlines. This ensures keyboard users don't encounter interactive dead ends.
