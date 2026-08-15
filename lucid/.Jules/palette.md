@@ -1,0 +1,3 @@
+## 2024-08-15 - Conditionally Disable Interactive States
+**Learning:** When interactive elements (like cards) become non-interactive due to application state (e.g., entering an "edit mode" where clicks are disabled or handled differently), retaining keyboard semantics (`role`, `tabIndex`) and interactive visual cues (`cursor-pointer`, hover effects, focus rings) causes confusion and violates accessibility expectations, as screen readers and keyboard users will perceive and interact with elements that have no action.
+**Action:** Always conditionally disable pointer cursors, hover effects, focus-visible outlines, and keyboard accessibility semantics (tabIndex, role, onKeyDown) when interactive elements are placed into a disabled or non-interactive state.
