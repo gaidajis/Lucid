@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useCallback } from 'react';
 import { Plus } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useLucidStore } from './store/useLucidStore';
@@ -94,6 +94,21 @@ function App() {
     }
   };
 
+
+  const handleEditClick = useCallback((item: LucidItem) => {
+    setEditingItem(item);
+    setEditModalOpen(true);
+  }, []);
+
+  const handleDeleteClick = useCallback((item: LucidItem) => {
+    setDeletingItem(item);
+    setDeleteModalOpen(true);
+  }, []);
+
+  const handleViewClick = useCallback((item: LucidItem) => {
+    setViewingItem(item);
+  }, []);
+
   const scrollToTier = (tierId: TierCategory | null) => {
     setActiveTier(tierId);
     if (tierId) {
@@ -151,15 +166,9 @@ function App() {
                     key={item.id}
                     item={item}
                     editMode={editMode}
-                    onEdit={(i) => {
-                      setEditingItem(i);
-                      setEditModalOpen(true);
-                    }}
-                    onDelete={(i) => {
-                      setDeletingItem(i);
-                      setDeleteModalOpen(true);
-                    }}
-                    onView={(i) => setViewingItem(i)}
+                    onEdit={handleEditClick}
+                    onDelete={handleDeleteClick}
+                    onView={handleViewClick}
                   />
                 ))}
               </TierSection>
