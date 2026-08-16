@@ -1,0 +1,3 @@
+## 2024-08-16 - Adding keyboard accessibility to interactive divs
+**Learning:** Interactive elements such as `div` or `motion.div` that have `onClick` handlers must be fully keyboard accessible to ensure a good UX for all users.
+**Action:** Always pair `onClick` on non-button elements with `role="button"`, `tabIndex={0}`, an `onKeyDown` handler (for `Enter` and `Space`), and `focus-visible` utility classes (e.g., `focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black dark:focus-visible:ring-white`). When handling the `Space` key in `onKeyDown`, `e.preventDefault()` must be called to prevent default scrolling behavior.
