@@ -1,0 +1,4 @@
+
+## 2024-08-16 - Conditionally Managing Interactive Semantics on Wrapper Elements
+**Learning:** When a generic container element (like a card `motion.div`) acts as a primary clickable target but contains secondary interactive elements that take precedence in specific states (like Edit/Delete buttons during an 'edit mode'), the container must dynamically shed its `role="button"` and `tabIndex` semantics. Otherwise, keyboard users are forced to tab through "dead" focus stops that no longer trigger the primary action, causing confusion and inefficiency.
+**Action:** Always conditionally bind `role`, `tabIndex`, and `onKeyDown` handlers based on the active state. In addition, bind `focus-visible` ring styles dynamically so the visual focus indicator is only present when the element is actually interactive.
