@@ -1,0 +1,3 @@
+## 2024-08-17 - Conditional Keyboard Semantics for Edit Modes
+**Learning:** When elements like `DataCard` transition between interactive (view mode) and non-interactive/container states (edit mode), their accessibility semantics must be dynamically toggled. Applying `role="button"` and `tabIndex={0}` unconditionally causes the container to remain focusable during edit mode, creating confusion for screen readers and keyboard users who encounter a "button" that doesn't trigger its primary action anymore.
+**Action:** Always conditionally remove accessibility semantics (e.g. `role={!editMode ? 'button' : undefined}`, `tabIndex={!editMode ? 0 : undefined}`, and event listeners) when placing an interactive element into an editing or disabled container state.
