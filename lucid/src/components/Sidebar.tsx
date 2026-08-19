@@ -76,7 +76,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
     <div className="flex flex-col h-full">
       {/* Header */}
       <div className="p-6 pb-4">
-        <button onClick={onLogoClick} className="text-left">
+        <button onClick={onLogoClick} className="text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black dark:focus-visible:ring-white rounded">
           <h1 className="font-serif text-xl tracking-wide mb-1 text-text-primary-light dark:text-text-primary hover:opacity-70 transition-opacity">LUCID</h1>
         </button>
         <p className="text-xs text-gray-500 dark:text-gray-400">The hierarchy of what matters.</p>
@@ -94,7 +94,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
                   onTierClick(tier.id);
                   onClose();
                 }}
-                className={`w-full text-left px-3 py-2.5 transition-colors ${
+                className={`w-full text-left px-3 py-2.5 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black dark:focus-visible:ring-white ${
                   activeTier === tier.id
                     ? 'border-l-2 border-white dark:border-white font-bold pl-2 bg-gray-100 dark:bg-gray-800'
                     : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200'
@@ -119,7 +119,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
               <button
                 key={opt}
                 onClick={() => onFilterChange('modality', opt)}
-                className={`px-3 py-1 text-xs font-mono rounded-full transition-colors ${
+                className={`px-3 py-1 text-xs font-mono rounded-full transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black dark:focus-visible:ring-white ${
                   activeFilter.modality === opt
                     ? 'bg-black text-white dark:bg-white dark:text-black'
                     : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700'
@@ -137,7 +137,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
               <button
                 key={opt}
                 onClick={() => onFilterChange('budget', opt)}
-                className={`px-3 py-1 text-xs font-mono rounded-full transition-colors ${
+                className={`px-3 py-1 text-xs font-mono rounded-full transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black dark:focus-visible:ring-white ${
                   activeFilter.budget === opt
                     ? 'bg-black text-white dark:bg-white dark:text-black'
                     : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700'
@@ -156,7 +156,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
       <div className="p-4">
         <button
           onClick={handleEditModeClick}
-          className={`w-full py-3 text-sm font-medium rounded-md transition-colors flex items-center justify-center gap-2 ${
+          className={`w-full py-3 text-sm font-medium rounded-md transition-colors flex items-center justify-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black dark:focus-visible:ring-white ${
             editMode
               ? 'bg-red-500 text-white hover:bg-red-600'
               : 'bg-gray-100 dark:bg-gray-800 text-gray-500 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700'
@@ -215,13 +215,13 @@ export const Sidebar: React.FC<SidebarProps> = ({
                   <button
                     type="button"
                     onClick={() => setPinPromptOpen(false)}
-                    className="flex-1 py-2 text-sm rounded-lg border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
+                    className="flex-1 py-2 text-sm rounded-lg border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black dark:focus-visible:ring-white"
                   >
                     Cancel
                   </button>
                   <button
                     type="submit"
-                    className="flex-1 py-2 text-sm rounded-lg bg-black dark:bg-white text-white dark:text-black hover:bg-gray-800 dark:hover:bg-gray-200 transition-colors font-medium"
+                    className="flex-1 py-2 text-sm rounded-lg bg-black dark:bg-white text-white dark:text-black hover:bg-gray-800 dark:hover:bg-gray-200 transition-colors font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black dark:focus-visible:ring-white focus-visible:ring-offset-2"
                   >
                     Unlock
                   </button>
@@ -240,12 +240,12 @@ export const Sidebar: React.FC<SidebarProps> = ({
         {sidebarContent}
       </aside>
       <header className="lg:hidden sticky top-0 z-40 bg-white dark:bg-background border-b border-border-light dark:border-border px-4 py-3 flex items-center justify-between">
-        <button onClick={onLogoClick} className="text-left">
+        <button onClick={onLogoClick} className="text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black dark:focus-visible:ring-white rounded">
           <h1 className="font-serif text-lg tracking-wide text-text-primary-light dark:text-text-primary hover:opacity-70 transition-opacity">LUCID</h1>
         </button>
         <button
           onClick={onClose}
-          className="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full"
+          className="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black dark:focus-visible:ring-white"
           aria-label="Open menu"
         >
           <Menu className="w-6 h-6" />
@@ -271,7 +271,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
               <div className="absolute top-4 right-4">
                 <button
                   onClick={onClose}
-                  className="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full"
+                  className="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black dark:focus-visible:ring-white"
                   aria-label="Close menu"
                 >
                   <X className="w-6 h-6" />

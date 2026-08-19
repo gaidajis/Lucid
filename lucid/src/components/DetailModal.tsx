@@ -75,7 +75,7 @@ export const DetailModal: React.FC<DetailModalProps> = ({ item, onClose }) => {
           {/* Close button */}
           <button
             onClick={onClose}
-            className="absolute top-4 right-4 z-10 p-2 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors shadow-sm"
+            className="absolute top-4 right-4 z-10 p-2 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black dark:focus-visible:ring-white"
             aria-label="Close"
           >
             <X className="w-5 h-5" />
@@ -215,7 +215,7 @@ export const DetailModal: React.FC<DetailModalProps> = ({ item, onClose }) => {
                   href={item.affiliateLink}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center justify-center gap-2 w-full py-3 bg-black dark:bg-white text-white dark:text-black font-mono text-sm uppercase tracking-wider hover:bg-gray-800 dark:hover:bg-gray-200 transition-colors rounded-lg"
+                  className="flex items-center justify-center gap-2 w-full py-3 bg-black dark:bg-white text-white dark:text-black font-mono text-sm uppercase tracking-wider hover:bg-gray-800 dark:hover:bg-gray-200 transition-colors rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black dark:focus-visible:ring-white focus-visible:ring-offset-2 dark:focus-visible:ring-offset-gray-900"
                 >
                   <span>View Product / Book Now</span>
                   <ExternalLink className="w-4 h-4" />

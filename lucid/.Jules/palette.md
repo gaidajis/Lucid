@@ -1,0 +1,3 @@
+## 2025-02-23 - Focus Visible Styles for Keyboard Navigation
+**Learning:** Found multiple interactive elements lacking visible focus states during keyboard navigation. To adhere to the monochrome design system, all interactive elements should be consistently given `focus-visible` utility classes (e.g., `focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black dark:focus-visible:ring-white`).
+**Action:** When implementing any new interactive component (buttons, interactive divs), unconditionally add `focus-visible` styling using the established monochrome tailwind classes to ensure accessibility. For `div` or `motion.div` acting as buttons, verify they have `role="button"`, `tabIndex={0}`, and an `onKeyDown` handler.
