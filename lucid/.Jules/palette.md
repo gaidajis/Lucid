@@ -1,0 +1,3 @@
+## 2024-05-24 - Conditional Accessibility on Interactive Cards
+**Learning:** Applying accessibility primitives (like `role="button"`, `tabIndex={0}`, and `onKeyDown`) unconditionally to list elements creates traps for screen reader users when those elements are functionally disabled (e.g., during an "edit mode" where card clicks are ignored). It leads users to think they can interact with the element when they cannot.
+**Action:** When a container is only conditionally interactive, strictly conditionally apply its interactive semantics, keyboard event listeners, and focus styles (e.g., using `!editMode ? "button" : undefined` for roles) so it is ignored by screen readers and keyboard navigation when disabled.
