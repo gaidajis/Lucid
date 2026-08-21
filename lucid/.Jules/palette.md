@@ -1,0 +1,3 @@
+## 2024-08-21 - Accessible Data Cards
+**Learning:** Conditionally applying interactive semantics (like role="button" and tabIndex) and styling (like cursor-pointer and focus-visible) on elements based on their functionally active state (e.g., !editMode) is critical. Applying them unconditionally creates traps for screen reader and keyboard users where they can focus on elements they cannot interact with.
+**Action:** When components have modes that disable their primary click interactions, ensure accessibility attributes (role, tabIndex, onKeyDown) are also removed or set to undefined, and update visual indicators appropriately to accurately represent the current state.
