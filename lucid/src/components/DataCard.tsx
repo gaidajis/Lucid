@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, memo } from 'react';
 import { motion } from 'framer-motion';
 import { Pencil, Trash2, ImageOff } from 'lucide-react';
 import type { LucidItem } from '../types';
@@ -25,7 +25,8 @@ const tierLabels: Record<string, string> = {
   'tier-10-meaning': 'TIER 10',
 };
 
-export const DataCard: React.FC<DataCardProps> = ({ item, editMode, onEdit, onDelete, onView }) => {
+// Memoize to prevent unnecessary re-renders when parent state changes
+export const DataCard = memo(({ item, editMode, onEdit, onDelete, onView }: DataCardProps) => {
   const [imageError, setImageError] = useState(false);
 
   // Reset image error when item changes (e.g. after filter)
@@ -122,4 +123,4 @@ export const DataCard: React.FC<DataCardProps> = ({ item, editMode, onEdit, onDe
       </div>
     </motion.div>
   );
-};
+});
