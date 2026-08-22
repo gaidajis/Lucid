@@ -1,0 +1,3 @@
+## 2024-05-24 - Conditionally Applying Interactive Semantics to DataCards
+**Learning:** Applying accessibility primitives (role="button", tabIndex) and focus styles unconditionally on cards that are only interactable in certain states (like standard view vs. edit mode) creates traps and confusion for screen reader users when those interactions are disabled.
+**Action:** Always conditionally apply `role`, `tabIndex`, `onKeyDown`, and `focus-visible` styles based strictly on the element's active state (e.g., `!editMode`), ensuring screen readers and keyboard navigation only target functionally active elements.
